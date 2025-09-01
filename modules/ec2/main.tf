@@ -20,7 +20,7 @@ resource "aws_instance" "web" {
   vpc_security_group_ids = [var.security_group_id]
   subnet_id              = var.subnet_id
 
-  
+  user_data = base64encode(templatefile("${path.module}/user_data.sh", {}))
 
   tags = {
     Name        = "${var.project_name}-${var.environment}-web-server"
